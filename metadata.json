@@ -1,0 +1,6 @@
+{
+  "name": "Sector 7 Codex",
+  "description": "An immersive post-apocalyptic codex and interactive directory for Sector 7 in 2087.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
