@@ -187,7 +187,7 @@ export const ProtocolPanel: React.FC = () => {
             </h3>
             <p className="text-xs text-zinc-400 mb-4">최근 24시간 이내에 본인에게 발현된 모든 증상을 투명하게 체크하십시오. 은폐 시 군법에 회부됩니다.</p>
             
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-2 py-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 py-2">
               {allSymptoms.map((sym) => {
                 const isChecked = selectedSymptoms.includes(sym);
                 return (

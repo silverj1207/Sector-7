@@ -27,10 +27,10 @@ export default function App() {
       </div>
 
       {/* Main Container */}
-      <div className="flex-1 w-full max-w-7xl mx-auto px-4 md:px-6 py-8 space-y-8 flex flex-col justify-between">
+      <div className="flex-1 w-full max-w-7xl mx-auto px-4 md:px-6 py-4 md:py-8 space-y-6 md:space-y-8 flex flex-col justify-between">
         
         {/* Simple & Clean Header */}
-        <header id="console-header" className="flex flex-col md:flex-row md:items-center justify-between border-b border-zinc-800/85 pb-6 gap-4">
+        <header id="console-header" className="flex flex-col md:flex-row md:items-center justify-between border-b border-zinc-800/85 pb-4 md:pb-6 gap-4">
           <div className="space-y-1.5">
             <h1 className="font-display font-black text-2xl tracking-wider text-green-400 flex items-center gap-2">
               <Compass className="h-6 w-6 text-green-500 animate-[spin_12s_linear_infinite]" />
@@ -54,39 +54,39 @@ export default function App() {
         </header>
 
         {/* Clean Modern Navigation Tabs */}
-        <div id="navigation-root" className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
+        <div id="navigation-root" className="flex overflow-x-auto pb-2 gap-2.5 scrollbar-hide md:grid md:grid-cols-3 md:pb-0">
           <button
             onClick={() => setActiveTab('map')}
-            className={`py-3.5 px-4 rounded-lg text-xs font-bold tracking-wider font-display uppercase border transition-all flex items-center justify-center gap-2 ${
+            className={`flex-none w-auto md:w-full py-3 px-4 md:py-3.5 rounded-lg text-xs font-bold tracking-wider font-display uppercase border transition-all flex items-center justify-center gap-2 ${
               activeTab === 'map'
                 ? 'bg-zinc-900 text-green-400 border-green-500/50 shadow-md shadow-green-950/10'
                 : 'bg-zinc-950/40 text-zinc-500 border-zinc-900 hover:text-zinc-300 hover:border-zinc-800'
             }`}
           >
-            <Map className="h-4 w-4" />
-            01. SECTOR 7 구역 지도
+            <Map className="h-4 w-4 shrink-0" />
+            <span className="whitespace-nowrap">01. SECTOR 7 구역 지도</span>
           </button>
           <button
             onClick={() => setActiveTab('relationships')}
-            className={`py-3.5 px-4 rounded-lg text-xs font-bold tracking-wider font-display uppercase border transition-all flex items-center justify-center gap-2 ${
+            className={`flex-none w-auto md:w-full py-3 px-4 md:py-3.5 rounded-lg text-xs font-bold tracking-wider font-display uppercase border transition-all flex items-center justify-center gap-2 ${
               activeTab === 'relationships'
                 ? 'bg-zinc-900 text-green-400 border-green-500/50 shadow-md shadow-green-950/10'
                 : 'bg-zinc-950/40 text-zinc-500 border-zinc-900 hover:text-zinc-300 hover:border-zinc-800'
             }`}
           >
-            <Users className="h-4 w-4" />
-            02. SECTOR 7 인물 관계도
+            <Users className="h-4 w-4 shrink-0" />
+            <span className="whitespace-nowrap">02. SECTOR 7 인물 관계도</span>
           </button>
           <button
             onClick={() => setActiveTab('protocols')}
-            className={`py-3.5 px-4 rounded-lg text-xs font-bold tracking-wider font-display uppercase border transition-all flex items-center justify-center gap-2 ${
+            className={`flex-none w-auto md:w-full py-3 px-4 md:py-3.5 rounded-lg text-xs font-bold tracking-wider font-display uppercase border transition-all flex items-center justify-center gap-2 ${
               activeTab === 'protocols'
                 ? 'bg-zinc-900 text-green-400 border-green-500/50 shadow-md shadow-green-950/10'
                 : 'bg-zinc-950/40 text-zinc-500 border-zinc-900 hover:text-zinc-300 hover:border-zinc-800'
             }`}
           >
-            <ShieldCheck className="h-4 w-4" />
-            03. 감염 자가진단 보고서
+            <ShieldCheck className="h-4 w-4 shrink-0" />
+            <span className="whitespace-nowrap">03. 감염 자가진단 보고서</span>
           </button>
         </div>
 

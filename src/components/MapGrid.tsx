@@ -75,17 +75,17 @@ export const MapGrid: React.FC<MapGridProps> = ({ onSelectLocation, selectedLoca
   });
 
   return (
-    <div id="sector7-tactical-map-deck" className="grid grid-cols-1 lg:grid-cols-12 gap-8 bg-zinc-900/45 border border-zinc-800/80 rounded-xl p-6 backdrop-blur-md">
+    <div id="sector7-tactical-map-deck" className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 bg-zinc-900/45 border border-zinc-800/80 rounded-xl p-4 md:p-6 backdrop-blur-md">
       
       {/* 1. LEFT SIDEBAR: Simplified flat directory list */}
-      <section id="directory-sidebar-column" className="lg:col-span-5 flex flex-col justify-between space-y-5">
-        <div className="space-y-4">
+      <section id="directory-sidebar-column" className="lg:col-span-5 flex flex-col justify-between space-y-5 order-2 lg:order-1">
+        <div className="space-y-3 md:space-y-4">
           <div className="pb-3 border-b border-zinc-800">
             <h3 className="text-base font-bold text-green-400 flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
               구역 리스트 ({filteredLocations.length}개 위치)
             </h3>
-            <p className="text-xs text-zinc-400 leading-normal mt-1.5">
+            <p className="text-[11px] md:text-xs text-zinc-400 leading-normal mt-1.5">
               요새 각 거점의 보안 수칙, 주둔 인원 및 공기 안전 지표를 확인하시려면 목록을 터치하십시오.
             </p>
           </div>
@@ -95,15 +95,15 @@ export const MapGrid: React.FC<MapGridProps> = ({ onSelectLocation, selectedLoca
             <Search className="absolute left-3 top-2.5 h-3.5 w-3.5 text-zinc-500" />
             <input
               type="text"
-              placeholder="찾아가고 싶은 구역 및 키워드 검색..."
+              placeholder="구역 검색..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-zinc-950/90 border border-zinc-800 rounded-lg px-9 py-2.5 text-xs text-zinc-300 focus:outline-none focus:border-green-500/50 placeholder-zinc-650 transition-all font-sans"
+              className="w-full bg-zinc-950/90 border border-zinc-800 rounded-lg px-9 py-2 md:py-2.5 text-xs text-zinc-300 focus:outline-none focus:border-green-500/50 placeholder-zinc-650 transition-all font-sans"
             />
           </div>
 
           {/* Flat Scrollable List */}
-          <div className="space-y-1.5 max-h-[380px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-zinc-800">
+          <div className="space-y-1.5 max-h-[220px] lg:max-h-[380px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-zinc-800">
             {filteredLocations.map((loc) => {
               const isSelected = selectedLocation?.id === loc.id;
               const isHovered = hoveredLocationId === loc.id;
@@ -204,7 +204,7 @@ export const MapGrid: React.FC<MapGridProps> = ({ onSelectLocation, selectedLoca
       </section>
 
       {/* 2. RIGHT GRAPHIC HUD PANEL: Beautifully simplified geometric map layout */}
-      <section id="interactive-radar-hud" className="lg:col-span-7 flex flex-col justify-center space-y-4">
+      <section id="interactive-radar-hud" className="lg:col-span-7 flex flex-col justify-center space-y-4 order-1 lg:order-2">
         
         {/* Easy-to-read Simplified Legend box (Moved Outside) */}
         <div className="flex justify-end">
@@ -220,7 +220,7 @@ export const MapGrid: React.FC<MapGridProps> = ({ onSelectLocation, selectedLoca
         </div>
 
         {/* Dynamic Map Visual Canvas */}
-        <div className="relative bg-zinc-950 rounded-xl border border-zinc-800/90 overflow-hidden aspect-[4/3] w-full flex items-center justify-center p-6 shadow-inner">
+        <div className="relative bg-zinc-950 rounded-xl border border-zinc-800/90 overflow-hidden aspect-square md:aspect-[4/3] w-full flex items-center justify-center p-4 md:p-6 shadow-inner">
           
           {/* Subtle clean grid layout overlay */}
           <div className="absolute inset-0 pointer-events-none opacity-[0.03]" 
@@ -236,10 +236,12 @@ export const MapGrid: React.FC<MapGridProps> = ({ onSelectLocation, selectedLoca
           </div>
 
           {/* Simple Radial Alignment circles */}
-          <div className="absolute w-[360px] h-[360px] rounded-full border border-zinc-900 pointer-events-none flex items-center justify-center">
-            <div className="w-[280px] h-[280px] rounded-full border border-zinc-900/60" />
-            <div className="w-[180px] h-[180px] rounded-full border border-dashed border-zinc-900" />
-            <div className="w-[80px] h-[80px] rounded-full border border-zinc-900/30" />
+          <div className="absolute w-[90%] md:w-[360px] aspect-square rounded-full border border-zinc-900 pointer-events-none flex items-center justify-center">
+            <div className="w-[75%] h-[75%] rounded-full border border-zinc-900/60 flex items-center justify-center">
+              <div className="w-[60%] h-[60%] rounded-full border border-dashed border-zinc-900 flex items-center justify-center">
+                <div className="w-[30%] h-[30%] rounded-full border border-zinc-900/30" />
+              </div>
+            </div>
 
             <div className="absolute w-full h-px bg-zinc-900/40" />
             <div className="absolute h-full w-px bg-zinc-900/40" />
