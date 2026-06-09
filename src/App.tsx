@@ -4,11 +4,12 @@ import { LocationInfo } from './types';
 import { MapGrid } from './components/MapGrid';
 import { RelationshipMap } from './components/RelationshipMap';
 import { ProtocolPanel } from './components/ProtocolPanel';
+import { WorldviewPanel } from './components/WorldviewPanel';
 import { AudioPlayer } from './components/AudioPlayer';
-import { Map, Users, ShieldCheck, Compass, AlertCircle } from 'lucide-react';
+import { Map, Users, ShieldCheck, Compass, AlertCircle, Globe } from 'lucide-react';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<'map' | 'relationships' | 'protocols'>('map');
+  const [activeTab, setActiveTab] = useState<'map' | 'relationships' | 'protocols' | 'worldview'>('worldview');
   const [selectedLocation, setSelectedLocation] = useState<LocationInfo | null>(LOCATIONS[0]);
 
   const selectLocationFromParent = (loc: LocationInfo) => {
@@ -54,7 +55,18 @@ export default function App() {
         </header>
 
         {/* Clean Modern Navigation Tabs */}
-        <div id="navigation-root" className="flex overflow-x-auto pb-2 gap-2.5 scrollbar-hide md:grid md:grid-cols-3 md:pb-0">
+        <div id="navigation-root" className="flex overflow-x-auto pb-2 gap-2.5 scrollbar-hide md:grid md:grid-cols-4 md:pb-0">
+          <button
+            onClick={() => setActiveTab('worldview')}
+            className={`flex-none w-auto md:w-full py-3 px-4 md:py-3.5 rounded-lg text-xs font-bold tracking-wider font-display uppercase border transition-all flex items-center justify-center gap-2 ${
+              activeTab === 'worldview'
+                ? 'bg-zinc-900 text-green-400 border-green-500/50 shadow-md shadow-green-950/10'
+                : 'bg-zinc-950/40 text-zinc-500 border-zinc-900 hover:text-zinc-300 hover:border-zinc-800'
+            }`}
+          >
+            <Globe className="h-4 w-4 shrink-0" />
+            <span className="whitespace-nowrap">01. 세계관 (WORLDVIEW)</span>
+          </button>
           <button
             onClick={() => setActiveTab('map')}
             className={`flex-none w-auto md:w-full py-3 px-4 md:py-3.5 rounded-lg text-xs font-bold tracking-wider font-display uppercase border transition-all flex items-center justify-center gap-2 ${
@@ -64,7 +76,7 @@ export default function App() {
             }`}
           >
             <Map className="h-4 w-4 shrink-0" />
-            <span className="whitespace-nowrap">01. SECTOR 7 구역 지도</span>
+            <span className="whitespace-nowrap">02. SECTOR 7 구역 지도</span>
           </button>
           <button
             onClick={() => setActiveTab('relationships')}
@@ -75,7 +87,7 @@ export default function App() {
             }`}
           >
             <Users className="h-4 w-4 shrink-0" />
-            <span className="whitespace-nowrap">02. SECTOR 7 인물 관계도</span>
+            <span className="whitespace-nowrap">03. SECTOR 7 인물 관계도</span>
           </button>
           <button
             onClick={() => setActiveTab('protocols')}
@@ -86,12 +98,16 @@ export default function App() {
             }`}
           >
             <ShieldCheck className="h-4 w-4 shrink-0" />
-            <span className="whitespace-nowrap">03. 감염 자가진단 보고서</span>
+            <span className="whitespace-nowrap">04. 감염 자가진단 보고서</span>
           </button>
         </div>
 
         {/* Tab Components Render View */}
         <div id="content-display-port" className="min-h-[500px]">
+          {activeTab === 'worldview' && (
+            <WorldviewPanel />
+          )}
+
           {activeTab === 'map' && (
             <MapGrid 
               onSelectLocation={selectLocationFromParent} 
